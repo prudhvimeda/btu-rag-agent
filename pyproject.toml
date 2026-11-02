@@ -1,0 +1,29 @@
+[project]
+name = "btu-rag-agent"
+version = "0.1.0"
+description = "Grounded question answering over the BTU Cottbus-Senftenberg module catalogue, with a LangGraph agent, a FastAPI service and a RAG evaluation suite."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=2.3",
+    "fastapi>=0.115",
+    "langgraph>=1.0",
+    "pydantic>=2.7",
+    "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+dev = ["httpx>=0.27", "pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["btu_rag*"]
+
+[tool.setuptools.package-data]
+"btu_rag.eval" = ["*.jsonl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
